@@ -7,12 +7,12 @@ double f(double x) {
     return pow(x, 2) + 4;
 }
 
-double bisection_method(double (*f)(double), double a, double b, double eps_x, double eps_f) {
+double bisection_method(double (*fn)(double), double a, double b, double eps_x, double eps_f) {
     if (eps_x <= 0 || eps_f <= 0) {
         throw std::invalid_argument("eps must be > 0");
     }
 
-    double fa = f(a), fb = f(b);
+    double fa = fn(a), fb = fn(b);
     if (fa == 0) return a;
     if (fb == 0) return b;
 
@@ -20,7 +20,7 @@ double bisection_method(double (*f)(double), double a, double b, double eps_x, d
 
     for (;;) {
         double c = (a + b) / 2;
-        double fc = f(c);
+        double fc = fn(c);
 
         if (std::abs(fc) <= eps_f || (b - a) * 0.5 <= eps_x) return c;
         
