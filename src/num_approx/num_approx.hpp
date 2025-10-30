@@ -1,8 +1,7 @@
 #pragma once
-#include <cmath>
 #include <stdexcept>
 
-namespace math::num_approx {
+namespace num_approx {
     using Fn = double (*)(double);
     
     double secant_slope(Fn fn, double x, double h, bool central_diff=true);
